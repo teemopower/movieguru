@@ -20,20 +20,9 @@ function getMovie(name){
     plot.innerHTML = data.Plot;
     background.style.backgroundImage = "url('" + data.Poster + "')";
 
-    // chart
-    
+    // chart    
     let rating = parseInt(data.Ratings[1].Value);
     let opposingRating = 100 - rating;
-
-    let ratingsArray = [rating, opposingRating];
-
-    let sortedValues = ratingsArray.sort((a,b) => {
-      return a - b;
-    })
-
-    console.log(sortedValues)
-
-    console.log(opposingRating, rating)
 
     getRatingsChart(rating,opposingRating)
   }, (err) => {
@@ -44,9 +33,8 @@ function getMovie(name){
 getMovie('angry birds')
 
 function callApi (url){
-
   return new Promise((resolve, reject) =>{
-
+    
     var xhr = new XMLHttpRequest();
     
     xhr.open('GET', url, );
@@ -62,7 +50,6 @@ function callApi (url){
     xhr.send();
   });
 }
-
 
 //options
 var options = {
@@ -84,18 +71,22 @@ var options = {
   },
   plugins: {
     datalabels: {
-      color: '#36A2EB',
+      color: 'black',
       formatter: function(value, context) {
-      return Math.round(value) + '%';
-    },
-    
-}
+        return Math.round(value) + '%';
+      },
+    }
   }
 };
 
-
-
 function getRatingsChart(positive, negative) {
+  if(document.querySelector('.chartjs-render-monitor')){
+    var ctx = document.getElementById("myChart");
+    ctx.parentNode.removeChild(ctx);
+
+    var newCanvas = document.createElement('div');
+
+  }
   
 
   var dataItems = [positive,negative];
@@ -114,10 +105,15 @@ function getRatingsChart(positive, negative) {
      }
     ]
   }
-  var ctx = document.getElementById("myChart");
-  var myChart = new Chart(ctx, {
+
+  var chartElement = document.getElementById("myChart");
+  var myChart = new Chart(chartElement, {
     type: 'doughnut',
     data: data,
     options: options,
   });
 } 
+
+
+
+
