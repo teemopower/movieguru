@@ -1,4 +1,3 @@
-
 function getMovie(name){
   let movieElement = document.querySelector('.movie-name');
   
@@ -65,7 +64,6 @@ function callApi (url){
 }
 
 
-
 //options
 var options = {
   responsive: true,
@@ -83,17 +81,22 @@ var options = {
       fontColor: "#333",
       fontSize: 16
     }
+  },
+  plugins: {
+    datalabels: {
+      color: '#36A2EB',
+      formatter: function(value, context) {
+      return Math.round(value) + '%';
+    },
+    
+}
   }
 };
 
-// var ctx = document.getElementById("myChart");
-// var myChart = new Chart(ctx, {
-//   type: 'doughnut',
-//   data: data,
-//   options: options
-// });
+
 
 function getRatingsChart(positive, negative) {
+  
 
   var dataItems = [positive,negative];
 
@@ -105,8 +108,8 @@ function getRatingsChart(positive, negative) {
         borderColor: "black",
         fill: false,
         backgroundColor: [
-          "#5688d8",
-          "#ffd3de",
+          "#84d868",
+          "#e8a092",
         ]
      }
     ]
@@ -115,6 +118,6 @@ function getRatingsChart(positive, negative) {
   var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: data,
-    options: options
+    options: options,
   });
 } 
