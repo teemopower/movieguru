@@ -6,7 +6,6 @@ function getMovie(name){
 
   let url = `http://www.omdbapi.com/?apikey=2632e1d1&t=${movieName}`;
 
-  
   callApi(url)
   .then((result) => {
     let data = JSON.parse(result);
@@ -35,7 +34,7 @@ getMovie('angry birds')
 function callApi (url){
   return new Promise((resolve, reject) =>{
     
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     
     xhr.open('GET', url, );
     
@@ -52,7 +51,7 @@ function callApi (url){
 }
 
 //options
-var options = {
+let options = {
   responsive: true,
   title: {
     display: true,
@@ -82,21 +81,20 @@ var options = {
 function getRatingsChart(positive, negative) {
   // prevents multiple initialization of charts
   if(document.querySelector('.chartjs-render-monitor')){
-    var ctx = document.getElementById("myChart");
+    let ctx = document.getElementById("myChart");
     ctx.parentNode.removeChild(ctx);
 
-    var newCanvas = document.createElement('canvas');
+    let newCanvas = document.createElement('canvas');
     newCanvas.setAttribute("id","myChart");
     newCanvas.setAttribute("width","600");
     newCanvas.setAttribute("height","300");
-    var boxB = document.querySelector('.b');
+    let boxB = document.querySelector('.b');
     boxB.appendChild(newCanvas);
   }
   
+  let dataItems = [positive,negative];
 
-  var dataItems = [positive,negative];
-
-  var data = {
+  let data = {
     labels: ['Positive', 'Negative'],
     datasets: [
       { 
@@ -111,8 +109,8 @@ function getRatingsChart(positive, negative) {
     ]
   }
 
-  var chartElement = document.getElementById("myChart");
-  var myChart = new Chart(chartElement, {
+  let chartElement = document.getElementById("myChart");
+  let myChart = new Chart(chartElement, {
     type: 'doughnut',
     data: data,
     options: options,
