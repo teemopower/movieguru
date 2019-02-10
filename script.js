@@ -80,12 +80,17 @@ var options = {
 };
 
 function getRatingsChart(positive, negative) {
+  // prevents multiple initialization of charts
   if(document.querySelector('.chartjs-render-monitor')){
     var ctx = document.getElementById("myChart");
     ctx.parentNode.removeChild(ctx);
 
-    var newCanvas = document.createElement('div');
-
+    var newCanvas = document.createElement('canvas');
+    newCanvas.setAttribute("id","myChart");
+    newCanvas.setAttribute("width","600");
+    newCanvas.setAttribute("height","300");
+    var boxB = document.querySelector('.b');
+    boxB.appendChild(newCanvas);
   }
   
 
