@@ -84,7 +84,7 @@ var options = {
   },
   plugins: {
     datalabels: {
-      color: '#36A2EB',
+      color: 'black',
       formatter: function(value, context) {
       return Math.round(value) + '%';
     },
