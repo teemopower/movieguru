@@ -56,7 +56,7 @@ let options = {
   title: {
     display: true,
     position: "top",
-    text: "Critic Ratings",
+    text: "Rotten Tomatoes",
     fontSize: 18,
     fontColor: "#111"
   },
@@ -115,8 +115,16 @@ function getRatingsChart(positive, negative) {
     data: data,
     options: options,
   });
-} 
+}
 
+let input = document.querySelector(".movie-name");
+
+input.addEventListener("keyup", function(event) {
+  event.preventDefault();
+  if (event.keyCode === 13) {
+    document.querySelector(".search-button").click();
+  }
+});
 
 
 
